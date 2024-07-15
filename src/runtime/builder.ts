@@ -126,7 +126,11 @@ export function createSitemapIndex(options, base = null, req = null) {
 
   // Set urls
   const defaultHostname = options.hostname
-  sitemapIndexConfig.urls = options.sitemaps.map((options) => {
+
+  // exclude sitemaps that should not be included in the sitemap index
+  const sitemaps = options.sitemaps?.filter((options2) => !options2.excludeInSitemapIndex);  
+
+  sitemapIndexConfig.urls = sitemaps.map((options) => {
     // Normalize to absolute path
     const path = join('.', options.gzip ? `${options.path}.gz` : options.path)
     const hostname = getHostname(options.hostname ? options : { ...options, hostname: defaultHostname }, req, base)
