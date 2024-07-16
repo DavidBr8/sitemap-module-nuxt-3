@@ -38,7 +38,7 @@
   "scripts": {
     "build-module": "nuxt-build-module && yarn unit",
     "build": "npx nuxi build test/fixture",
-    "prepare": "npm run build",
+    "prepare": "npm run build-module",
     "dev": "npx nuxi dev test/fixture",
     "format": "yarn lint --fix",
     "generate": "npx nuxi generate test/fixture",
