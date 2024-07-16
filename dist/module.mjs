@@ -179,11 +179,7 @@ const DEFAULT_NUXT_PUBLIC_PATH = "/_nuxt/";
 function setDefaultSitemapOptions(options, nuxtInstance, isLinkedToSitemapIndex = false) {
   const defaults = {
     path: "/sitemap.xml",
-    hostname: (
-      // TODO: remove support of "build.publicPath" on release 3.0
-      // nuxt@3.0.0-rc.12 nuxtInstance.options.build.publicPath eq to `{}`
-      nuxtInstance.options.app.buildAssetsDir !== DEFAULT_NUXT_PUBLIC_PATH ? nuxtInstance.options.app.buildAssetsDir : void 0
-    ),
+    hostname: nuxtInstance.options.app.buildAssetsDir !== DEFAULT_NUXT_PUBLIC_PATH ? nuxtInstance.options.app.buildAssetsDir : void 0,
     exclude: [],
     routes: nuxtInstance.options.generate.routes || [],
     cacheTime: 1e3 * 60 * 15,

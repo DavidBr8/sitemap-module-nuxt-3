@@ -3,7 +3,7 @@ import { join } from "path";
 import { URL } from "url";
 import isHTTPS from "is-https";
 import * as sm from "sitemap";
-import logger from "./logger.js";
+import logger from "./logger.mjs";
 export function createSitemap(options, routes, base = null, req = null) {
   const sitemapConfig = { cacheTime: null, hostname: null, xmlNs: null, xslUrl: null, urls: null };
   sitemapConfig.cacheTime = options.cacheTime || 0;
