@@ -124,7 +124,7 @@ function createRoutesCache(globalCache, options) {
     maxAge: options.cacheTime,
     async load(_, callback) {
       try {
-        let routes = await Promise.all(await promisifyRoute(options.routes));
+        let routes = await Promise.all(await promisifyRoute(() => options.routes(options.routesLink)));
         routes = joinRoutes(globalCache.staticRoutes ? globalCache.staticRoutes() : [], routes);
         callback(null, routes);
       } catch (err) {
