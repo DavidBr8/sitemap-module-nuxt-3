@@ -17,7 +17,10 @@ export function createRoutesCache(globalCache, options) {
     async load(_, callback) {
       try {
         let routes = await Promise.all(await promisifyRoute(() => options.routes(options.routesLink)))
-        routes = joinRoutes(globalCache.staticRoutes ? globalCache.staticRoutes() : [], routes)
+        routes = joinRoutes(
+          globalCache.staticRoutes && !options.withoutStaticRoutes ? globalCache.staticRoutes() : [],
+          routes
+        )
         callback(null, routes)
       } catch (err) {
         /* istanbul ignore next */
